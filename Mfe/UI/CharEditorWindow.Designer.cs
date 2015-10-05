@@ -461,6 +461,8 @@
             // 
             // chartNavModeToolStripMenuItem
             // 
+            this.chartNavModeToolStripMenuItem.Checked = true;
+            this.chartNavModeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chartNavModeToolStripMenuItem.Name = "chartNavModeToolStripMenuItem";
             this.chartNavModeToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
             this.chartNavModeToolStripMenuItem.Text = "Chart &Navigation";
