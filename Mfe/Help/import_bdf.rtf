@@ -1,0 +1,20 @@
+﻿{\rtf1
+
+
+
+\ql\ul0\fi250\fs19\sa75
+\tx100\tx250
+
+
+
+
+{\qc\fs21\ul1\sb400\sa100\fi0
+Import BDF
+\par}
+MFE allows you to import BDF fonts (only writing direction 0 is supported). BDF is an outdated bitmap font format from the 80s. You may be able to find BDF files lying around on various Websites. The Rockbox project has a helpful fonts package which contains many free fonts you can use. (You need to download the Rockbox source, not the actual fonts package; the source contains BDFs, and the fonts package contains FNT files MFE cannot parse.)\par
+
+The BDF file format supports fonts with an arbitrary number of characters, with each glyph having a defined Unicode codepoint. Therefore, you need to select which glyphs from the BDF should be imported. When you import a BDF, MFE presents a dialog that lets you choose which glyphs to import. You can use the Character Browser to select characters to import one-at-a-time, or you can load a code page file (see the section "Font Properties" for the format of a code page file), and MFE will attempt to match each Unicode code point specified in the code page file to a glyph in the BDF.\par
+
+
+
+}

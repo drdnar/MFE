@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<topic order="2" title="MFE" filename="default.rtf">
+	<topic order="1" title="About MFE">
+		<section order="1" filename="overview.rtf" title="Overview"/>
+		<section order="2" filename="file_formats.rtf" title="Font File Basics"/>
+		<section order="3" filename="about.rtf" title="About &amp; Changelog"/>
+	</topic>
+	<topic order="2" title="MFE Usage">
+    <section order="1" filename="save_load.rtf" title="Save &amp; Load"/>
+    <section order="2" filename="import_bdf.rtf" title="Import BDF"/>
+    <section order="3" filename="char_editor.rtf" title="Glyph Editing"/>
+    <section order="4" filename="font_properties.rtf" title="Font Properties"/>
+    <section order="5" filename="glyph_chart.rtf" title="Glyph Chart"/>
+    <section order="6" filename="text_preview.rtf" title="Text Preview"/>
+		<topic order="7" title="Exports" filename="exporters.rtf">
+			<section order="1" filename="exporter_zstart.rtf" title="zStart &amp; Omnicalc"/>
+      <section order="2" filename="exporter_xeda.rtf" title="Xeda's Formats"/>
+      <section order="3" filename="exporter_vcse.rtf" title="Variable-Width CSE Format"/>
+      <section order="4" filename="exporter_ce.rtf" title="CE Formats"/>
+      <section order="5" filename="exporter_custom.rtf" title="Custom Exporters"/>
+		</topic>
+	</topic>
+
+</topic>

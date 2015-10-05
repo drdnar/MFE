@@ -1,0 +1,19 @@
+﻿{\rtf1
+
+
+
+\ql\ul0\fi250\fs19\sa75
+\tx100\tx250
+
+
+
+{\qc\fs21\ul1\sb400\sa100\fi0
+How to Add a Custom Exporter of Your Own
+\par}
+If you want to add support for your own custom format, you will need to recompile MFE after adding your own exporter function. On Windows, you will need to download and install Visual Studio C# Express. MFE is developed with VS2012, but you can use an earlier version if you create a compatible project file. On Linux and Mac, I frankly have no idea.\par
+
+To add a new exporter, follow the examples in any of the exporters. Add your exporter into the Exports folder, and make sure it uses the FontExporter attribute. You do not need to edit the Export dialog, becuase it will find your exporter automatically using reflection.\par
+
+
+
+}

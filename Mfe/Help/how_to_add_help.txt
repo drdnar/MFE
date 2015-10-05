@@ -1,0 +1,8 @@
+﻿Help files use the RTF format, because that's what the Forms API supports for text boxes.  They're hand-coded.
+
+To add a new help topic, you need to do three things:
+ - Add a new RTF for the help topic in the Help folder.
+ - Select the RTF file, and change its Build Action from None to Embedded Resource.
+    - If you don't do this, you'll get an error when you try to open the Help window.
+ - Edit index.html to reference the RTF file you created.
+    - If you don't maintain strict XML compliance, you'll get an error when you try to open the Help window.

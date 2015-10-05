@@ -1,0 +1,21 @@
+﻿{\rtf1
+
+
+
+\ql\ul0\fi250\fs19\sa75
+\tx100\tx250
+
+
+
+{\qc\fs21\ul1\sb400\sa100\fi0
+Font Basics
+\par}
+MFE supports glyphs up to 64x64 pixels. Each font has exactly 256 glyphs. All glyphs in a font are the same height. MFE supports variable-width fonts, and also supports fixed-width fonts.\par
+
+Each character has an associated Unicode codepoint. The text previewer uses this to select the glyph to display for each character entered. Each font is coded using ASCII by default. You can assign any Unicode codepoint to any glyph. Thus, you can make glyph #0 'Q' if you want. And the text previewer will figure that out automatically, such that typing Q will cause it to show glyph #0. All Unicode codepoints must be in the Basic Multilingual Plane.\par
+
+In some font formats, each glyph may be required to specify more data than is actually present. In particular, in many formats, pixels are scanned left-to-right and are byte-packed, such that each row must contain a whole number of bytes of data. For example, if a character is 6 pixels wide, 8 pixels of data must nevertheless be given for each row. Thus, there is a difference between how much data is present, and much is actually used. MFE therefore makes a distinction between the data width of a glyph and the logical width of a glyph. If there is a distinction, the red line in the character editor shows the logical width of the character; anything past that may or may not appear in the font file and on-screen.\par
+
+
+
+}

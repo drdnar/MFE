@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D316BE0E-1EF6-4DFE-BB32-BABF777A16B2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mfe</RootNamespace>
+    <AssemblyName>Mfe</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Mfe.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exports\FixedWidthCEFontExporter.cs" />
+    <Compile Include="Exports\VariableWidthCEFontExporter.cs" />
+    <Compile Include="Exports\VariableWidthCSEFontExporter.cs" />
+    <Compile Include="UI\CharPreviewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CharPreviewer.Designer.cs">
+      <DependentUpon>CharPreviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\BdfFont.cs" />
+    <Compile Include="UI\BdfBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BdfBrowser.Designer.cs">
+      <DependentUpon>BdfBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BdfImporter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BdfImporter.Designer.cs">
+      <DependentUpon>BdfImporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Char.cs" />
+    <Compile Include="Core\CodePageTable.cs" />
+    <Compile Include="Exports\BDFExporter.cs" />
+    <Compile Include="Exports\MicrosFontExporter.cs" />
+    <Compile Include="Exports\OmnicalcFontExporter.cs" />
+    <Compile Include="Exports\XedaFormat1Exporter.cs" />
+    <Compile Include="Exports\XedaFormat2Exporter.cs" />
+    <Compile Include="Exports\XedaFormat3Exporter.cs" />
+    <Compile Include="UI\ExportsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ExportsWindow.Designer.cs">
+      <DependentUpon>ExportsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exports\FontExporter.cs" />
+    <Compile Include="Exports\Program.cs" />
+    <Compile Include="Exports\ZStartFontExporter.cs" />
+    <Compile Include="UI\CharEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CharEditor.Designer.cs">
+      <DependentUpon>CharEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CharEditorWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CharEditorWindow.Designer.cs">
+      <DependentUpon>CharEditorWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Font.cs" />
+    <Compile Include="UI\FontPropertiesEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FontPropertiesEditor.Designer.cs">
+      <DependentUpon>FontPropertiesEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FontTextPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\FontTextPanel.Designer.cs">
+      <DependentUpon>FontTextPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpWindow.Designer.cs">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Importer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Importer.Designer.cs">
+      <DependentUpon>Importer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MasterWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MasterWindow.Designer.cs">
+      <DependentUpon>MasterWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PreviewChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PreviewChart.Designer.cs">
+      <DependentUpon>PreviewChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PreviewText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PreviewText.Designer.cs">
+      <DependentUpon>PreviewText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\BdfBrowser.resx">
+      <DependentUpon>BdfBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BdfImporter.resx">
+      <DependentUpon>BdfImporter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CharEditor.resx">
+      <DependentUpon>CharEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CharEditorWindow.resx">
+      <DependentUpon>CharEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExportsWindow.resx">
+      <DependentUpon>ExportsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FontPropertiesEditor.resx">
+      <DependentUpon>FontPropertiesEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpWindow.resx">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Importer.resx">
+      <DependentUpon>Importer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MasterWindow.resx">
+      <DependentUpon>MasterWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PreviewChart.resx">
+      <DependentUpon>PreviewChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PreviewText.resx">
+      <DependentUpon>PreviewText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Help\overview.rtf" />
+    <EmbeddedResource Include="Help\about.rtf" />
+    <EmbeddedResource Include="Help\char_editor.rtf" />
+    <EmbeddedResource Include="Help\exporters.rtf" />
+    <EmbeddedResource Include="Help\file_formats.rtf" />
+    <EmbeddedResource Include="Help\exporter_zstart.rtf" />
+    <EmbeddedResource Include="Help\import_bdf.rtf" />
+    <EmbeddedResource Include="Help\save_load.rtf" />
+    <EmbeddedResource Include="Help\default.rtf" />
+    <EmbeddedResource Include="Help\font_properties.rtf" />
+    <EmbeddedResource Include="Help\glyph_chart.rtf" />
+    <EmbeddedResource Include="Help\text_preview.rtf" />
+    <EmbeddedResource Include="Help\exporter_custom.rtf" />
+    <EmbeddedResource Include="Help\exporter_xeda.rtf" />
+    <EmbeddedResource Include="Help\exporter_ce.rtf" />
+    <EmbeddedResource Include="Help\exporter_vcse.rtf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\sample_font.mfefont" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\i_have_a_dream.txt" />
+    <Content Include="Resources\the_raven.txt" />
+    <EmbeddedResource Include="Help\index.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Help\how_to_add_help.txt" />
+    <Content Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Resources\codepage_basic_ascii.txt">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

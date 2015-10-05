@@ -1,0 +1,25 @@
+﻿{\rtf1
+
+
+
+\ql\ul0\fi250\fs19\sa75
+\tx100\tx250
+
+
+
+{\qc\fs21\ul1\sb400\sa100\fi0
+Font Properties
+\par}
+The Properties window lets you edit global properties of the font.\par
+
+If "Data Width Multiple of 8" is checked, then you can only select widths that are a multiple of 8. The Data Width and Width fields can only be edited if the font is fixed-width. If you turn off variable-width support on a variable-width font, all characters will acquire the width of glyph 77 (M in ASCII), which is usually the widest glyph.\par
+
+Some devices do not use square pixels. Although the font format supports any aspect ratio, currently you can only select between square and 2:1 pixels using the "Double Width" option.\par
+
+The Metadata editor lets you add additional information, such as a name or copyright. Some exporters may change how they process font data depending on metadata. For example, the MicrOS exporter will invert all pixels if the key "Inverted" is present and has the value "true".\par
+
+The Code Page Table import/export functions may be useful for synchronizing Unicode translations across multiple fonts. A code page file is a text document containing 257 lines. The first line is the name of the code page. Each of the next 256 lines defines what Unicode code point maps to the corresponding 8-bit code page code point, starting with code point 0 and going to 255 sequentially. The first character on the line is the Unicode character that 8-bit code point represents, and the remainder may optionally define a name for that code point (e.g. "question mark").\par
+
+
+
+}

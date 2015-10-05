@@ -1,0 +1,21 @@
+﻿{\rtf1
+
+
+
+\ql\ul0\fi250\fs19\sa75
+\tx100\tx250
+
+
+
+{\qc\fs21\ul1\sb400\sa100\fi0
+Variable Width CSE Font
+\par}
+This format is suited for use with the TI-84 Plus C SE. It is designed for a routine the paints pixels top-to-bottom, left-to-right, instead of left-to-right, top-to-bottom. When the row window bounds are set to the top and bottom of a line of text and the column bounds set to the edges of the screen, if you use use top-to-bottom, left-to-right order, then, after painting each glyph, the cursor is positioned for the next glyph, without requring window bounds or cursor position to be set again. Thus, the top-to-bottom, left-to-right order is efficient.\par
+
+This format serializes pixels top-to-bottom, left-to-right. It starts at bit 0, and then moves up to bit 7. Thus, each byte should be decoded with an RRCA loop, not RLCA or ADD A, A.\par
+
+This format works well for both fixed-width and variable-width fonts. For variable-width fonts, it includes a table of glyph widths and a table of offsets to each glyph. If you are using a fixed-width font, you may want to delete those tables and index based on a hard-coded multiply.\par
+
+
+
+}
