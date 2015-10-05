@@ -240,13 +240,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\sample_font.mfefont" />
+    <None Include="Resources\sample_font.mfefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\i_have_a_dream.txt" />
+    <Content Include="Resources\quick_readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\the_raven.txt" />
     <EmbeddedResource Include="Help\index.xml">
       <SubType>Designer</SubType>
