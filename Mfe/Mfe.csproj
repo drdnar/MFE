@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mfe</RootNamespace>
     <AssemblyName>Mfe</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -67,7 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exports\Bin32FontExporter.cs" />
     <Compile Include="Exports\FixedWidthCEFontExporter.cs" />
+    <Compile Include="Exports\FontLibCAsmExporter.cs" />
+    <Compile Include="Exports\FontLibCExporter.cs" />
+    <Compile Include="Exports\QuickBasicExporter.cs" />
     <Compile Include="Exports\VariableWidthCEFontExporter.cs" />
     <Compile Include="Exports\VariableWidthCSEFontExporter.cs" />
     <Compile Include="UI\CharPreviewer.cs">
@@ -187,6 +192,9 @@
     <EmbeddedResource Include="UI\FontPropertiesEditor.resx">
       <DependentUpon>FontPropertiesEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\FontTextPanel.resx">
+      <DependentUpon>FontTextPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\HelpWindow.resx">
       <DependentUpon>HelpWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +239,8 @@
     <EmbeddedResource Include="Help\exporter_xeda.rtf" />
     <EmbeddedResource Include="Help\exporter_ce.rtf" />
     <EmbeddedResource Include="Help\exporter_vcse.rtf" />
+    <EmbeddedResource Include="Help\exporter_fontlibcasm.rtf" />
+    <EmbeddedResource Include="Help\exporter_fontlibcc.rtf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -240,18 +250,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\sample_font.mfefont">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\sample_font.mfefont" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\i_have_a_dream.txt" />
-    <Content Include="Resources\quick_readme.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\the_raven.txt" />
     <EmbeddedResource Include="Help\index.xml">
       <SubType>Designer</SubType>

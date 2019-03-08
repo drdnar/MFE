@@ -31,6 +31,38 @@ namespace Mfe
             }
         }
 
+        private byte[] weightByteValues = new byte[]
+        {
+            0, // Unspecified
+            0x20, // Thin
+            0x30, // Extra light
+            0x40, // Light
+            0x60, // Semilight
+            0x80, // Normal
+            0x90, // Medium
+            0xA0, // Semibold
+            0xC0, // Bold
+            0xE0, // Extra bold
+            0xF0, // Black
+            0xFF,
+        };
+
+        private string[] weightNames = new string[]
+        {
+            "Unspecified",
+            "Thin",
+            "Extra light",
+            "Light",
+            "Semilight",
+            "Normal",
+            "Medium",
+            "Semibold",
+            "Bold",
+            "Extra bold",
+            "Black",
+            "Amorphous blobs (non-std)",
+        };
+
         public void RefreshData()
         {
             Master.CharEditorWindow.RefreshData();
@@ -42,6 +74,8 @@ namespace Mfe
             heightUpDown.Value = CurrentFont.Height;
             widthUpDown.Value = CurrentFont[(int)'M'].Width;
             widthUpDown.Enabled = !variableWidthCheckBox.Checked;
+            spaceAboveUpDown.Value = CurrentFont.SpaceAbove;
+            spaceBelowUpDown.Value = CurrentFont.SpaceBelow;
             logicalWidthUpDown.Value = CurrentFont[(int)'M'].LogicalWidth;
             logicalWidthUpDown.Enabled = !variableWidthCheckBox.Checked;
             //widthUpDown.ReadOnly = !variableWidthCheckBox.Checked;
@@ -69,6 +103,13 @@ namespace Mfe
                 codepageNameTextbox.Text = "<unspecified>";
             foreach (KeyValuePair<string, string> p in CurrentFont.AboutData)
                 keyComboBox.Items.Add(p.Key);
+            serifRadioButton.Checked = CurrentFont.StyleSerif;
+            sansSerifRadioButton.Checked = !CurrentFont.StyleSerif;
+            uprightRadioButton.Checked = CurrentFont.StyleObliqueness == Mfe.Font.Obliqueness.Upright;
+            obliqueRadioButton.Checked = CurrentFont.StyleObliqueness == Mfe.Font.Obliqueness.Oblique;
+            italicRadioButton.Checked = CurrentFont.StyleObliqueness == Mfe.Font.Obliqueness.Italic;
+            weightNumericUpDown.Value = CurrentFont.Weight;
+            weightNumericUpDown_ValueChanged(this, null);
         }
 
         private void FontPropertiesEditor_FormClosing(object sender, FormClosingEventArgs e)
@@ -249,5 +290,59 @@ namespace Mfe
             Master.CharEditorWindow.RefreshData();
         }
 
+        private void spaceAboveUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            CurrentFont.SpaceAbove = (byte)spaceAboveUpDown.Value;
+            Master.CharEditorWindow.RefreshData();
+        }
+
+        private void spaceBelowUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            CurrentFont.SpaceBelow = (byte)spaceBelowUpDown.Value;
+            Master.CharEditorWindow.RefreshData();
+        }
+
+        private void serifRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (serifRadioButton.Checked)
+                CurrentFont.StyleSerif = true;
+        }
+
+        private void sansSerifRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sansSerifRadioButton.Checked)
+                CurrentFont.StyleSerif = false;
+        }
+
+        private void uprightRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (uprightRadioButton.Checked)
+                CurrentFont.StyleObliqueness = Mfe.Font.Obliqueness.Upright;
+        }
+
+        private void obliqueRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (obliqueRadioButton.Checked)
+                CurrentFont.StyleObliqueness = Mfe.Font.Obliqueness.Oblique;
+        }
+
+        private void italicRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (italicRadioButton.Checked)
+                CurrentFont.StyleObliqueness = Mfe.Font.Obliqueness.Italic;
+        }
+
+        private void weightNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            var nonstd = "(non-standard)";
+            CurrentFont.Weight = (byte)(weightNumericUpDown.Value);
+            byte value = (byte)weightNumericUpDown.Value;
+            for (int i = weightByteValues.Length - 1; i >= 0; i--)
+                if (value >= weightByteValues[i])
+                {
+                    weightDescriptionLabel.Text = $"({value}) {weightNames[i]} {(weightByteValues[i] != value ? nonstd : String.Empty)}";
+                    break;
+                }
+        }
     }
 }

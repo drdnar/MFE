@@ -102,9 +102,5 @@ namespace Mfe
         {
             Master.CharEditorWindow.charEditor.PixelChanged -= charEditor_PixelChanged;
         }
-
-
-
-
     }
 }

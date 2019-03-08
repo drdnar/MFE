@@ -9,11 +9,49 @@ namespace Mfe
     {
         public const byte CurrentVersionNumber = 1;
         public const byte CurrentMinorVersionNumber = 0;
-        public byte FirstCodePoint;
-        public byte LastCodePoint;
-        public byte NewlineCodePoint;
-        public byte TabCodePoint;
-        public byte SpaceCodePoint;
+        public int FirstCodePoint;
+        public int LastCodePoint;
+        public int NewlineCodePoint;
+        public int TabCodePoint;
+        public int SpaceCodePoint;
+        public byte Style;
+        public byte Weight = 0x80;
+        public byte ItalicSpaceAdjust;
+
+        #region Style
+        public bool StyleSerif
+        {
+            get
+            {
+                return (Style & 1) != 0;
+            }
+            set
+            {
+                Style |= (byte)(value ? 1 : 0);
+            }
+        }
+
+        [Flags]
+        public enum Obliqueness
+        {
+            Upright = 0,
+            Oblique = 2,
+            Italic = 4,
+        }
+
+        public Obliqueness StyleObliqueness
+        {
+            get
+            {
+                return (Obliqueness)(Style & 6);
+            }
+            set
+            {
+                Style &= unchecked((byte)(~6));
+                Style |= (byte)(value);
+            }
+        }
+        #endregion
 
         protected float aspectRatioWidth = 1;
         public float AspectRatioWidth
@@ -64,6 +102,10 @@ namespace Mfe
                         Glyphs[i].LogicalWidth = Glyphs[(int)'M'].LogicalWidth;
                         Glyphs[i].Width = Glyphs[(int)'M'].Width;
                     }
+                if (value)
+                    Style |= 8;
+                else
+                    Style &= unchecked((byte)(~8));
             }
         }
 
@@ -159,6 +201,8 @@ namespace Mfe
                     Glyphs[i].Height = height;
             }
         }
+        public byte SpaceAbove;
+        public byte SpaceBelow;
         protected byte baseLine = 7;
         /// <summary>
         /// Sets the location of the baseline indicator.
@@ -364,8 +408,8 @@ namespace Mfe
         {
             get
             {
-                // Master field, Version block, then BasicInformation, then WidthMustBeMultipleOfEightFlag
-                int l = 5 + 7 + 5 + 7 + 8 + 6;
+                // Master field, Version block, then BasicInformation, then WidthMustBeMultipleOfEightFlag, then MetricsInformation
+                int l = 5 + 7 + 5 + 7 + 8 + 6 + 13;
                 /* FirstCodePoint LastCodePoint NewlineCodePoint TabCodePoint SpaceCodePoint variableWidth height AspectRatioWidth AspectRatioHeight */
                 l += 9;
                 foreach (KeyValuePair<string, string> s in AboutData)
@@ -384,6 +428,7 @@ namespace Mfe
             BasicInformation = 16,
             AboutInformation = 17,
             WidthMustBeMultipleOfEightFlag = 18,
+            MetricsInformation = 19,
             Glyphs = 32,
         }
 
@@ -399,11 +444,11 @@ namespace Mfe
 
             destination[i++] = (byte)SerialzationHeaderIds.BasicInformation;
             WriteSerialized(destination, ref i, 7 + 8);
-            destination[i++] = FirstCodePoint;
-            destination[i++] = LastCodePoint;
-            destination[i++] = NewlineCodePoint;
-            destination[i++] = TabCodePoint;
-            destination[i++] = SpaceCodePoint;
+            destination[i++] = (byte)FirstCodePoint;
+            destination[i++] = (byte)LastCodePoint;
+            destination[i++] = (byte)NewlineCodePoint;
+            destination[i++] = (byte)TabCodePoint;
+            destination[i++] = (byte)SpaceCodePoint;
             destination[i++] = (byte)(variableWidth ? 255 : 0);
             destination[i++] = height;
             WriteSerialized(destination, ref i, (int)(aspectRatioWidth * 65536));
@@ -412,7 +457,19 @@ namespace Mfe
             destination[i++] = (byte)SerialzationHeaderIds.WidthMustBeMultipleOfEightFlag;
             WriteSerialized(destination, ref i, 1);
             destination[i++] = WidthMustBeMultipleOfEight ? (byte)1 : (byte)0;
-            
+
+            destination[i++] = (byte)SerialzationHeaderIds.MetricsInformation;
+            WriteSerialized(destination, ref i, 8);
+            destination[i++] = Style;
+            destination[i++] = Weight;
+            destination[i++] = SpaceAbove;
+            destination[i++] = SpaceBelow;
+            destination[i++] = BaseLine;
+            destination[i++] = XHeight;
+            destination[i++] = CapHeight;
+            destination[i++] = ItalicSpaceAdjust;
+
+
             destination[i++] = (byte)SerialzationHeaderIds.AboutInformation;
             int h = i;
             i += 4;
@@ -519,7 +576,26 @@ namespace Mfe
                             throw new ArgumentOutOfRangeException("MaximumCodePoints in font does not match internally expected value.");
                         font.Glyphs = new Char[MaximumCodePoints];
                         for (int j = 0; j < MaximumCodePoints; j++)
+                        {
                             font.Glyphs[j] = Char.DeserializeFrom(source, ref i);
+                            font.Glyphs[j].BaseLine = font.baseLine;
+                            font.Glyphs[j].XHeight = font.xHeight;
+                            font.Glyphs[j].CapHeight = font.CapHeight;
+                        }
+                        break;
+                    case SerialzationHeaderIds.MetricsInformation:
+                        int metricsLength = DeserializeInt(source, ref i);
+                        if (metricsLength != 7 && metricsLength != 8)
+                            throw new ArgumentException("Invalid MetricsInformation");
+                        font.Style = source[i++];
+                        font.Weight = source[i++];
+                        font.SpaceAbove = source[i++];
+                        font.SpaceBelow = source[i++];
+                        font.baseLine = source[i++];
+                        font.xHeight = source[i++];
+                        font.capHeight = source[i++];
+                        if (metricsLength == 8)
+                            font.ItalicSpaceAdjust = source[i++];
                         break;
                     default:
                         throw new ArgumentException("Invalid font.");

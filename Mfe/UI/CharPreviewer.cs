@@ -54,7 +54,7 @@ namespace Mfe
             base.OnPaint(e);
             if (currentChar == null)
                 return;
-            currentChar.Paint(this.Margin.Left, this.Margin.Top, size, size, BlackBrush, WhiteBrush, e);
+            currentChar.Paint(this.Margin.Left, this.Margin.Top, size, size, BlackBrush, WhiteBrush, e.Graphics);
         }
     }
 }

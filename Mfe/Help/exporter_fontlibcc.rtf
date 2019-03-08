@@ -1,0 +1,23 @@
+﻿{\rtf1
+
+
+
+\ql\ul0\fi250\fs19\sa75
+\tx100\tx250
+
+
+
+{\qc\fs21\ul1\sb400\sa100\fi0
+FontLibC .C file
+\par}
+This variable-width format supports glyphs up to 24 pixels wide. The resulting file is not a complete .C file, but rather a file that can be included in a C source code file like so:\par
+
+{\fonttbl {\f0 Courier;}}
+uint8_t my_font[] = \{\par
+	#include "my_font.inc"\par
+\};\par
+. . .\par
+    fontlib_SetFont(my_font, 0);
+
+
+}

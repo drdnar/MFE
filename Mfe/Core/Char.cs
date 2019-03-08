@@ -270,9 +270,8 @@ namespace Mfe
                     this[i, j] = !this[i, j];
         }
 
-        public void PaintEditor(int xBase, int yBase, float xScale, float yScale, Brush foreBrush, Brush backBrush, Pen gridPen, Pen widthLinePen, System.Windows.Forms.PaintEventArgs e)
+        public void PaintEditor(int xBase, int yBase, float xScale, float yScale, Brush foreBrush, Brush backBrush, Pen gridPen, Pen widthLinePen, Graphics g)
         {
-            Graphics g = e.Graphics;
             if (gridPen != null)
                 g.DrawLine(gridPen, xBase, yBase - gridPen.Width, xBase + xScale * width - 1, yBase - gridPen.Width);
             for (int y = 0; y < Height; y++)
@@ -308,10 +307,8 @@ namespace Mfe
             
         }
 
-        public void PaintVirtual(int xBase, int yBase, int xLimit, int yLimit, float xScale, float yScale, Brush foreBrush, Brush backBrush, System.Windows.Forms.PaintEventArgs e)
+        public void PaintVirtual(int xBase, int yBase, int xLimit, int yLimit, float xScale, float yScale, Brush foreBrush, Brush backBrush, Graphics g)
         {
-            Graphics g = e.Graphics;
-
             if (xBase >= xLimit || yBase >= yLimit)
             {
                 throw new Exception();//return;
@@ -344,10 +341,8 @@ namespace Mfe
                 }
         }
 
-        public void Paint(int xBase, int yBase, float xScale, float yScale, Brush foreBrush, Brush backBrush, System.Windows.Forms.PaintEventArgs e)
+        public void Paint(int xBase, int yBase, float xScale, float yScale, Brush foreBrush, Brush backBrush, Graphics g)
         {
-            Graphics g = e.Graphics;
-
             if (backBrush != null)
                 g.FillRectangle(backBrush, xBase, yBase, xScale * width, yScale * height);
 

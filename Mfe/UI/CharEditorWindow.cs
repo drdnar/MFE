@@ -455,14 +455,14 @@ namespace Mfe
 
         private void chartNavModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (chartNavModeToolStripMenuItem.Checked)
+/*            if (chartNavModeToolStripMenuItem.Checked)
             {
                 chartNavModeToolStripMenuItem.Checked = false;
             }
             else
             {
                 chartNavModeToolStripMenuItem.Checked = true;
-            }
+            }*/
         }
 
         public bool ChartNavigationMode
@@ -482,8 +482,17 @@ namespace Mfe
 
         }
 
-        
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            charSelectorUpDown.UpButton();
+            charEditor.CurrentChar.Invert();
+            Clipboard.SetDataObject(doCopy());
+            charEditor.CurrentChar.Invert();
+        }
 
-        
+        private void guidesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            charEditor.ShowGuides = guidesToolStripMenuItem.Checked;
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace Mfe
             try
             {
                 Exports.FontExporter.Exports[exporterListBox.SelectedIndex].DoExport(CurrentFont, pathTextBox.Text);
-                MessageBox.Show("File export successfully.", "Export Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("File exported successfully.", "Export Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception x)
             {

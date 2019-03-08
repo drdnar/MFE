@@ -82,7 +82,7 @@ namespace Mfe
             {
                 x = (chr % cols) * (scalex * (maxwidth + 1));
                 y = (chr / cols) * (scaley * (CurrentFont.Height + 1));
-                CurrentFont[chr].Paint(basex + (int)x, basey + (int)y, scalex, scaley, foreBrush, backBrush, e);
+                CurrentFont[chr].Paint(basex + (int)x, basey + (int)y, scalex, scaley, foreBrush, backBrush, e.Graphics);
             }
         }
 

@@ -158,7 +158,7 @@ namespace Mfe
             }
         }
         
-        protected Color baselineColor = DefaultForeColor;
+        protected Color baselineColor = Color.Red; // DefaultForeColor;
         protected Pen baselinePen = new Pen(DefaultForeColor);
         /// <summary>
         /// Sets the color of the baseline indicator.
@@ -177,7 +177,7 @@ namespace Mfe
             }
         }
         
-        protected Color xHeightColor = DefaultForeColor;
+        protected Color xHeightColor = Color.Red; // DefaultForeColor;
         protected Pen xHeightPen = new Pen(DefaultForeColor);
         /// <summary>
         /// Sets the color of the x-height indicator.
@@ -196,7 +196,7 @@ namespace Mfe
             }
         }
 
-        protected Color capHeightColor = DefaultForeColor;
+        protected Color capHeightColor = Color.Red; // DefaultForeColor;
         protected Pen capHeightPen = new Pen(DefaultForeColor);
         /// <summary>
         /// Sets the color of the cap height indicator.
@@ -212,6 +212,23 @@ namespace Mfe
                 capHeightColor = value;
                 capHeightPen = new Pen(new SolidBrush(capHeightColor));
                 capHeightPen.Width = capLineThickness;
+            }
+        }
+
+
+        protected bool showGuides = true;
+        /// <summary>
+        /// Set to show guides
+        /// </summary>
+        public bool ShowGuides
+        {
+            get
+            {
+                return showGuides;
+            }
+            set
+            {
+                showGuides = value;
             }
         }
 
@@ -355,7 +372,13 @@ namespace Mfe
             Brush black = new SolidBrush(Color.Black);
             float sx = currentChar.AspectRatioWidth * scale;
             float sy = currentChar.AspectRatioHeight * scale;
-            currentChar.PaintEditor(BorderX, BorderY, sx, sy, foreBrush, backBrush, showGrid ? gridPen : null, widthLinePen, e);
+            currentChar.PaintEditor(BorderX, BorderY, sx, sy, foreBrush, backBrush, showGrid ? gridPen : null, widthLinePen, e.Graphics);
+            if (showGuides)
+            {
+                g.DrawLine(baselinePen, BorderX, BorderY + sy * currentChar.BaseLine, BorderX + sx * currentChar.Width, BorderY + sy * currentChar.BaseLine);
+                g.DrawLine(xHeightPen, BorderX, BorderY + sy * currentChar.XHeight, BorderX + sx * currentChar.Width, BorderY + sy * currentChar.XHeight);
+                g.DrawLine(capHeightPen, BorderX, BorderY + sy * currentChar.CapHeight, BorderX + sx * currentChar.Width, BorderY + sy * currentChar.CapHeight);
+            }
             if (blink)
                 g.FillRectangle(cursorBrush, BorderX + sx * CursorX, BorderY + sy * CursorY, sx, sy);
             //gridPen.Color = Color.FromArgb(64, gridPen.Color.R, gridPen.Color.G, gridPen.Color.B);

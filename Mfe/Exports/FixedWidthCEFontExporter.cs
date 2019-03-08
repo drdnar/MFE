@@ -102,7 +102,7 @@ namespace Mfe.Exports
                 i = 8;
             else
                 i = remainingBits;
-            while (i-- > 0)
+            while (i --> 0)
             {
                 if (ch[row, col] ^ Inverted)
                     b |= 1 << shift++;

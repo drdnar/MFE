@@ -283,6 +283,7 @@
             this.fontTextPanel.ScreenWidth = 96;
             this.fontTextPanel.Size = new System.Drawing.Size(328, 246);
             this.fontTextPanel.TabIndex = 0;
+            this.fontTextPanel.TabWidth = 8;
             this.fontTextPanel.VirtualBackColor = System.Drawing.Color.White;
             // 
             // PreviewText

@@ -40,6 +40,7 @@
             this.codepointBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.characterNameBox = new System.Windows.Forms.TextBox();
+            this.nextButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +62,7 @@
             this.biggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smallerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guidesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextCharacterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,6 +107,7 @@
             this.flowLayoutPanel1.Controls.Add(this.groupBox5);
             this.flowLayoutPanel1.Controls.Add(this.groupBox6);
             this.flowLayoutPanel1.Controls.Add(this.groupBox2);
+            this.flowLayoutPanel1.Controls.Add(this.nextButton);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(277, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -230,6 +233,16 @@
             this.characterNameBox.TabIndex = 130;
             this.characterNameBox.Text = "The quick brown fox jumps over the lazy dog.";
             this.characterNameBox.TextChanged += new System.EventHandler(this.characterNameBox_TextChanged);
+            // 
+            // nextButton
+            // 
+            this.nextButton.Location = new System.Drawing.Point(3, 336);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(90, 40);
+            this.nextButton.TabIndex = 131;
+            this.nextButton.Text = "Next";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
             // menuStrip1
             // 
@@ -367,6 +380,7 @@
             this.biggerToolStripMenuItem,
             this.smallerToolStripMenuItem,
             this.gridToolStripMenuItem,
+            this.guidesToolStripMenuItem,
             this.toolStripSeparator3,
             this.findToolStripMenuItem,
             this.nextCharacterToolStripMenuItem,
@@ -428,6 +442,16 @@
             this.gridToolStripMenuItem.Text = "Show &Grid";
             this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
             // 
+            // guidesToolStripMenuItem
+            // 
+            this.guidesToolStripMenuItem.Checked = true;
+            this.guidesToolStripMenuItem.CheckOnClick = true;
+            this.guidesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.guidesToolStripMenuItem.Name = "guidesToolStripMenuItem";
+            this.guidesToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.guidesToolStripMenuItem.Text = "Show G&uides";
+            this.guidesToolStripMenuItem.Click += new System.EventHandler(this.guidesToolStripMenuItem_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -462,6 +486,7 @@
             // chartNavModeToolStripMenuItem
             // 
             this.chartNavModeToolStripMenuItem.Checked = true;
+            this.chartNavModeToolStripMenuItem.CheckOnClick = true;
             this.chartNavModeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chartNavModeToolStripMenuItem.Name = "chartNavModeToolStripMenuItem";
             this.chartNavModeToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
@@ -517,7 +542,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 461F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 437F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(384, 437);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
@@ -537,6 +562,7 @@
             this.charEditor.Location = new System.Drawing.Point(3, 3);
             this.charEditor.Name = "charEditor";
             this.charEditor.ShowGrid = true;
+            this.charEditor.ShowGuides = true;
             this.charEditor.Size = new System.Drawing.Size(268, 431);
             this.charEditor.TabIndex = 1;
             this.charEditor.ToggleMode = false;
@@ -625,5 +651,7 @@
         private System.Windows.Forms.ToolStripMenuItem previousCharacterToolStripMenuItem;
         public CharEditor charEditor;
         private System.Windows.Forms.ToolStripMenuItem chartNavModeToolStripMenuItem;
+        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.ToolStripMenuItem guidesToolStripMenuItem;
     }
 }

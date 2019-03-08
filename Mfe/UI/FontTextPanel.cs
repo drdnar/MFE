@@ -120,22 +120,19 @@ namespace Mfe
                 tabWidth = value;
             }
         }
+        
 
-        // TODO: Find a less convoluted way of doing this!
-        protected override void OnPaint(PaintEventArgs e)
+        public void PaintWith(Graphics g)
         {
-            // Possible alternate superlong word behavior:
-            // If word length is greater than the width of the screen,
-            // force it to print without breaking first.
-            base.OnPaint(e);
             if (font == null)
                 return;
+
             int x = 0;
-            int y = 0;
-            
+            int y = CurrentFont.SpaceAbove;
+
             float scalex = (float)this.scaleFactor * font.AspectRatioWidth;
             float scaley = (float)this.scaleFactor * font.AspectRatioHeight;
-            e.Graphics.FillRectangle(backBrush, x, y, (screenWidth) * scalex, scaley * (screenHeight));
+            g.FillRectangle(backBrush, x, y, (screenWidth) * scalex, scaley * (screenHeight));
 
             // Handle stupid case
             if (text.Length == 0)
@@ -144,33 +141,34 @@ namespace Mfe
             int loc = 0;
             char currentChar = '\x0';
             //bool newLine = true;
-            
+
             // I had these in separate functions, but I tired of passing all the variables
             Func<bool> IsWhiteSpace = () =>
-                {
-                    return text[loc] == ' ' || (int)text[loc] <= 0x0F || text[loc] == '\t';
-                };
-            
+            {
+                return text[loc] == ' ' || (int)text[loc] <= 0x0F || text[loc] == '\t';
+            };
+
             Action NewLine = () =>
-                {
-                    y += CurrentFont.Height;
-                    x = 0;
-                };
+            {
+                y += CurrentFont.Height + CurrentFont.SpaceAbove + CurrentFont.SpaceBelow;
+                x = 0;
+            };
 
             Func<int> GetWidthOfWord = () =>
-                {
-                    int l = 0;
-                    int oldLoc = loc;
-                    if (IsWhiteSpace())
-                        return 0;
-                    while (loc < text.Length && !IsWhiteSpace())
-                        if (CurrentFont[text[loc]] != null)
-                            l += CurrentFont[text[loc++]].Width;
-                        else
-                            loc++;
-                    loc = oldLoc;
-                    return l;
-                };
+            {
+                int l = 0;
+                int oldLoc = loc;
+                if (IsWhiteSpace())
+                    return 0;
+                while (loc < text.Length && !IsWhiteSpace())
+                    if (CurrentFont[text[loc]] != null)
+                        l += CurrentFont[text[loc++]].Width;
+                    else
+                        loc++;
+                int spaceAdjustment = CurrentFont.ItalicSpaceAdjust * (loc - oldLoc - 1);
+                loc = oldLoc;
+                return l - spaceAdjustment;
+            };
 
             Func<Mfe.Char> FontChar = () =>
             {
@@ -178,33 +176,33 @@ namespace Mfe
             };
 
             Func<bool> PrintWord = () =>
+            {
+                while (loc < text.Length && !IsWhiteSpace())
                 {
-                    while (loc < text.Length && !IsWhiteSpace())
+                    if (font[text[loc]] == null)
                     {
-                        if (font[text[loc]] == null)
-                        {
-                            if (++loc < text.Length)
-                                return true;
-                            continue;
-                        }
-                        if (x + FontChar().Width < screenWidth)
-                            FontChar().PaintVirtual(x, y, screenWidth, screenHeight, scalex, scaley, foreBrush, null, e);
-                        else
-                            return false;
-                        x += FontChar().Width;
-                        loc++;
+                        if (++loc < text.Length)
+                            return true;
+                        continue;
                     }
-                    return true;
-                };
+                    if (x + FontChar().Width < screenWidth)
+                        FontChar().PaintVirtual(x, y, screenWidth, screenHeight, scalex, scaley, foreBrush, null, g);
+                    else
+                        return false;
+                    x += FontChar().Width - CurrentFont.ItalicSpaceAdjust;
+                    loc++;
+                }
+                return true;
+            };
 
             Func<bool> TryPrintWord = () =>
+            {
+                if (GetWidthOfWord() + x < screenWidth)
                 {
-                    if (GetWidthOfWord() + x < screenWidth)
-                    {
-                        return PrintWord();
-                    }
-                    return false;
-                };
+                    return PrintWord();
+                }
+                return false;
+            };
 
             while (loc < text.Length)
             {
@@ -224,8 +222,8 @@ namespace Mfe
                         loc++;
                         continue;
                     }
-                    FontChar().PaintVirtual(x, y, screenWidth, screenHeight, scalex, scaley, foreBrush, null, e);
-                    x += FontChar().LogicalWidth;
+                    FontChar().PaintVirtual(x, y, screenWidth, screenHeight, scalex, scaley, foreBrush, null, g);
+                    x += FontChar().LogicalWidth - CurrentFont.ItalicSpaceAdjust;
                     loc++;
                 }
                 else if (currentChar == '\t')
@@ -242,8 +240,8 @@ namespace Mfe
                     }
                     for (int i = 0; i < tabWidth; i++)
                     {
-                        FontChar().PaintVirtual(x, y, screenWidth, screenHeight, scalex, scaley, foreBrush, null, e);
-                        x += FontChar().LogicalWidth;
+                        FontChar().PaintVirtual(x, y, screenWidth, screenHeight, scalex, scaley, foreBrush, null, g);
+                        x += FontChar().LogicalWidth - CurrentFont.ItalicSpaceAdjust;
                     }
                     loc++;
                 }
@@ -270,9 +268,32 @@ namespace Mfe
                     }
                     else
                         if (!TryPrintWord())
-                            NewLine();
+                        NewLine();
                 }
             }
+        }
+
+
+        // TODO: Find a less convoluted way of doing this!
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            //bitmap.set
+            // Possible alternate superlong word behavior:
+            // If word length is greater than the width of the screen,
+            // force it to print without breaking first.
+            base.OnPaint(e);
+            
+            PaintWith(e.Graphics);
+        }
+
+        private void copyImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap b = new Bitmap((int)(screenWidth * scaleFactor * font.AspectRatioWidth), (int)(screenHeight * scaleFactor * font.AspectRatioHeight));
+            PaintWith(Graphics.FromImage(b));
+            DataObject obj = new DataObject();
+            obj.SetImage(b);
+            Clipboard.SetDataObject(obj);
+            //fontTextPanel.BackgroundImage.*/
         }
     }
 }

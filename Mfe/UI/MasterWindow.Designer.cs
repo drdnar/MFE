@@ -34,6 +34,7 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importBDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,7 +50,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.importBDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,6 +101,13 @@
             this.importToolStripMenuItem.Text = "&Import . . .";
             this.importToolStripMenuItem.Visible = false;
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            // 
+            // importBDFToolStripMenuItem
+            // 
+            this.importBDFToolStripMenuItem.Name = "importBDFToolStripMenuItem";
+            this.importBDFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.importBDFToolStripMenuItem.Text = "Import &BDF . . .";
+            this.importBDFToolStripMenuItem.Click += new System.EventHandler(this.importBDFToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -214,13 +221,6 @@
             // 
             this.saveFileDialog.Filter = "Font|*.mfefont|All files|*.*";
             this.saveFileDialog.Title = "Save MFE Font";
-            // 
-            // importBDFToolStripMenuItem
-            // 
-            this.importBDFToolStripMenuItem.Name = "importBDFToolStripMenuItem";
-            this.importBDFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.importBDFToolStripMenuItem.Text = "Import &BDF . . .";
-            this.importBDFToolStripMenuItem.Click += new System.EventHandler(this.importBDFToolStripMenuItem_Click);
             // 
             // MasterWindow
             // 
