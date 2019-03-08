@@ -13,8 +13,8 @@
     <section order="5" filename="glyph_chart.rtf" title="Glyph Chart"/>
     <section order="6" filename="text_preview.rtf" title="Text Preview"/>
 		<topic order="7" title="Exports" filename="exporters.rtf">
-      <section order="1" filename="exporter_fontlibcasm.rtf" title="FontLibC .asm file"/>
-      <section order="2" filename="exporter_fontlibcc.rtf" title="FontLibC .C file"/>
+      <section order="1" filename="exporter_fontlibcasm.rtf" title="FontLibC .asm File"/>
+      <section order="2" filename="exporter_fontlibcc.rtf" title="FontLibC C Include File"/>
 			<section order="3" filename="exporter_zstart.rtf" title="zStart &amp; Omnicalc"/>
       <section order="4" filename="exporter_xeda.rtf" title="Xeda's Formats"/>
       <section order="5" filename="exporter_vcse.rtf" title="Variable-Width CSE Format"/>

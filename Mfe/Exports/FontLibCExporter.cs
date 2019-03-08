@@ -7,7 +7,7 @@ namespace Mfe.Exports
 {
     public class FontLibCExporter
     {
-        [FontExporter(FileTypeExtension = "asm", FileTypeDescription = "FontLibC .C file", HelpText = "Exports to a C source code file for inclusion in source code.")]
+        [FontExporter(FileTypeExtension = "inc", FileTypeDescription = "FontLibC C include file", HelpText = "Exports to a C source code file for inclusion in source code.")]
         public static void ExportData(Mfe.Font font, string path)
         {
             byte[] data = new byte[65536];
