@@ -214,7 +214,7 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "Font|*.mfefont|All files|*.*";
+            this.openFileDialog.Filter = "Font|*.mfefont|Windows .FNT file|*.fnt|All files|*.*";
             this.openFileDialog.Title = "Open MFE Font";
             // 
             // saveFileDialog
