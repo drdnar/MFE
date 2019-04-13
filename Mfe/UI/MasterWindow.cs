@@ -50,7 +50,23 @@ namespace Mfe
             {
                 if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    currentFont = Mfe.Font.ReadFromFile(CurrentFontOriginalPath = openFileDialog.FileName);
+                    using (var file = System.IO.File.OpenRead(openFileDialog.FileName))
+                    {
+                        byte[] header = new byte[2];
+                        file.Read(header, 0, 2);
+                        if ((char)header[0] == 'M' && (char)header[1] == 'F')
+                            currentFont = Mfe.Font.ReadFromFile(CurrentFontOriginalPath = openFileDialog.FileName);
+                        else if ((char)header[0] == 'M' && (char)header[1] == 'Z')
+                            throw new ArgumentException(".FON files are not supported; open an individual .FNT resource instead.");
+                        else if (header[0] == 0 && (header[1] == 2 || header[1] == 3))
+                        {
+                            currentFont = Mfe.FntImporter.Import(System.IO.File.ReadAllBytes(openFileDialog.FileName));
+                            CurrentFontOriginalPath = "";
+                        }
+                        else
+                            throw new ArgumentException("Unknown font format.");
+                    }
+                        
                     RefreshStuff();
                 }
             }
@@ -183,7 +199,7 @@ namespace Mfe
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Monochrome Font Editor\n5 October 2015", "About MFE");
+            MessageBox.Show("Monochrome Font Editor\n8 March 2019", "About MFE");
         }
 
         private void readMeFileToolStripMenuItem_Click(object sender, EventArgs e)
