@@ -65,6 +65,7 @@ namespace Mfe
 
         private FntImporter(byte[] data)
         {
+            font.WidthMustBeMultipleOfEight = false;
             this.data = data;
             ptr = 0;
             dfVersion = readWord();
