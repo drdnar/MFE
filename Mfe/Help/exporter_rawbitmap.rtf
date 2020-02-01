@@ -1,0 +1,28 @@
+﻿{\rtf1
+
+
+
+\ql\ul0\fi250\fs19\sa75
+\tx100\tx250
+
+
+
+{\qc\fs21\ul1\sb400\sa100\fi0
+Raw Bitmap File
+\par}
+The raw bitmap format reflects the typical structure of a bitmap embedded in a ROM and is structured like this:\par
+
+{\fonttbl {\f0 Courier;}}
+#define CHAR_HEIGHT somevalue\par
+#define CHAR_WIDTH somevalue\par
+#define CHAR_COUNT somevalue\par
+\par
+typedef struct \{\par
+    unsigned char bitmap[CHAR_HEIGHT][((CHAR_WIDTH - 1) >> 3) + 1];\par
+\} char_bitmap_t;\par
+\par
+typedef struct \{\par
+    char_bitmap_t bitmaps[CHAR_COUNT];\par
+\} raw_bitmap_table_t;\par
+
+}

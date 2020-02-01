@@ -50,6 +50,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.importRawBitmapTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +73,7 @@
             this.loadToolStripMenuItem,
             this.importToolStripMenuItem,
             this.importBDFToolStripMenuItem,
+            this.importRawBitmapTableToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.toolStripSeparator1,
@@ -83,21 +85,21 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.loadToolStripMenuItem.Text = "L&oad . . .";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.importToolStripMenuItem.Text = "&Import . . .";
             this.importToolStripMenuItem.Visible = false;
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
@@ -105,7 +107,7 @@
             // importBDFToolStripMenuItem
             // 
             this.importBDFToolStripMenuItem.Name = "importBDFToolStripMenuItem";
-            this.importBDFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.importBDFToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.importBDFToolStripMenuItem.Text = "Import &BDF . . .";
             this.importBDFToolStripMenuItem.Click += new System.EventHandler(this.importBDFToolStripMenuItem_Click);
             // 
@@ -113,26 +115,26 @@
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As . . .";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.quitToolStripMenuItem.Text = "&Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -222,6 +224,13 @@
             this.saveFileDialog.Filter = "Font|*.mfefont|All files|*.*";
             this.saveFileDialog.Title = "Save MFE Font";
             // 
+            // importRawBitmapTableToolStripMenuItem
+            // 
+            this.importRawBitmapTableToolStripMenuItem.Name = "importRawBitmapTableToolStripMenuItem";
+            this.importRawBitmapTableToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.importRawBitmapTableToolStripMenuItem.Text = "Import Raw &Bitmap Table . . .";
+            this.importRawBitmapTableToolStripMenuItem.Click += new System.EventHandler(this.importRawBitmapTableToolStripMenuItem_Click);
+            // 
             // MasterWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,6 +273,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importBDFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importRawBitmapTableToolStripMenuItem;
     }
 }
 

@@ -199,7 +199,7 @@ namespace Mfe
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Monochrome Font Editor\n8 March 2019", "About MFE");
+            MessageBox.Show("Monochrome Font Editor\n31 January 2020", "About MFE");
         }
 
         private void readMeFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,6 +230,24 @@ namespace Mfe
                 RefreshStuff();
             }
             
+        }
+
+        private void importRawBitmapTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RawBitmapTableImporter importer = new RawBitmapTableImporter();
+            try
+            {
+                if (importer.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    currentFont = importer.ImportedFont;
+                    CurrentFontOriginalPath = "";
+                    RefreshStuff();
+                }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Error loading file: " + x.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

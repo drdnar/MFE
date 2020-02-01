@@ -320,28 +320,28 @@ namespace Mfe
 
         private void shiftUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            charEditor.CurrentChar.ShiftUp();
+            charEditor.CurrentChar.ShiftUp(clearBottom: true);
             charEditor.Invalidate();
             charEditor.OnPixelChanged();
         }
 
         private void shiftDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            charEditor.CurrentChar.ShiftDown();
+            charEditor.CurrentChar.ShiftDown(clearTop: true);
             charEditor.Invalidate();
             charEditor.OnPixelChanged();
         }
 
         private void shiftLeftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            charEditor.CurrentChar.ShiftLeft();
+            charEditor.CurrentChar.ShiftLeft(clearRight: true);
             charEditor.Invalidate();
             charEditor.OnPixelChanged();
         }
 
         private void shiftRightToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            charEditor.CurrentChar.ShiftRight();
+            charEditor.CurrentChar.ShiftRight(clearLeft: true);
             charEditor.Invalidate();
             charEditor.OnPixelChanged();
         }

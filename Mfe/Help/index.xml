@@ -20,7 +20,8 @@
       <section order="5" filename="exporter_xeda.rtf" title="Xeda's Formats"/>
       <section order="6" filename="exporter_vcse.rtf" title="Variable-Width CSE Format"/>
       <section order="7" filename="exporter_ce.rtf" title="CE Formats"/>
-      <section order="8" filename="exporter_custom.rtf" title="Custom Exporters"/>
+      <section order="8" filename="exporter_rawbitmap.rtf" title="Raw Bitmap Format"/>
+      <section order="9" filename="exporter_custom.rtf" title="Custom Exporters"/>
 		</topic>
 	</topic>
 
